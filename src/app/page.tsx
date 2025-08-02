@@ -15,13 +15,36 @@ export default function Home() {
   if (!session) {
     // Logged out: Show landing screen
     return (
-      <main className="p-8 text-center space-y-6">
-        <h1 className="text-4xl font-bold tracking-tight">ReSearcher AI</h1>
-        <p className="text-gray-600 dark:text-gray-300 max-w-xl mx-auto">
-          Your collaborative platform for engineering research and CAD projects.
-        </p>
-        <AuthButtons />
-      </main>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-200 via-white to-blue-100 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 transition-colors">
+        <div className="bg-white/90 dark:bg-gray-950/90 rounded-3xl shadow-2xl p-10 flex flex-col items-center max-w-md w-full border-0 animate-fade-in">
+          <div className="mb-4">
+            <span className="inline-block rounded-full bg-gradient-to-tr from-indigo-400 via-blue-300 to-indigo-600 opacity-70 blur-[2px] w-16 h-16 absolute"></span>
+            <img
+              src="/logo.png"
+              alt="ReSearcher AI Logo"
+              width={64}
+              height={64}
+              className="relative rounded-full border-2 border-indigo-400 dark:border-indigo-700 shadow"
+            />
+          </div>
+          <h1 className="text-3xl font-extrabold text-indigo-700 dark:text-indigo-300 mb-2 text-center">
+            ReSearcher AI
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400 mb-6 text-center">
+            Your collaborative platform for engineering research and CAD projects.
+          </p>
+          <AuthButtons />
+        </div>
+        <style jsx global>{`
+          @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
+          }
+          .animate-fade-in {
+            animation: fade-in 0.7s cubic-bezier(.4,0,.2,1) both;
+          }
+        `}</style>
+      </div>
     );
   }
 
@@ -30,8 +53,8 @@ export default function Home() {
   const safeUser = user ?? { name: "User", image: "" };
 
   return (
-    <main className="p-4 space-y-4">
-      <div className="flex justify-end items-center gap-2">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-200 via-white to-indigo-200 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 transition-colors">
+      <div className="flex justify-end items-center gap-2 w-full max-w-xl mb-4">
         <Avatar>
           <AvatarImage src={safeUser.image ?? ""} />
           <AvatarFallback>{safeUser.name?.[0] ?? "U"}</AvatarFallback>
@@ -40,6 +63,6 @@ export default function Home() {
       </div>
       <WelcomeCard user={safeUser} onCreateProject={handleCreateProject} />
       {/* Add more dashboard content here */}
-    </main>
+    </div>
   );
 }
