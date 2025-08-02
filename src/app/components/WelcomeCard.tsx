@@ -24,20 +24,22 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({
 }) => (
   <Card className="max-w-md w-full mx-auto mt-8 shadow-lg rounded-2xl bg-white dark:bg-gray-950">
     <CardHeader>
-      <div>
-        <CardTitle className="text-2xl font-bold mb-1">
-          Welcome, {user?.name || "Guest"}!
-        </CardTitle>
-      </div>
-      {user?.image && (
+      <div className="flex items-center gap-3">
         <Image
-          src={user.image}
+          src={
+            user?.image && user.image !== ""
+              ? user.image
+              : "/default-avatar.png"
+          }
           alt="User Avatar"
           width={40}
           height={40}
           className="rounded-full border"
         />
-      )}
+        <CardTitle className="text-2xl font-bold mb-1">
+          Welcome, {user?.name || "Guest"}!
+        </CardTitle>
+      </div>
     </CardHeader>
     <CardContent>
       <p className="text-gray-700 dark:text-gray-300 mb-4">
