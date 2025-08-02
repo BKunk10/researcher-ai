@@ -16,15 +16,16 @@ export default function Home() {
     // Logged out: Show landing screen
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-200 via-white to-blue-100 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 transition-colors">
-        <div className="bg-white/90 dark:bg-gray-950/90 rounded-3xl shadow-2xl p-10 flex flex-col items-center max-w-md w-full border-0 animate-fade-in">
-          <div className="mb-4">
-            <span className="inline-block rounded-full bg-gradient-to-tr from-indigo-400 via-blue-300 to-indigo-600 opacity-70 blur-[2px] w-16 h-16 absolute"></span>
+        <div className="bg-white/90 dark:bg-gray-950/90 rounded-3xl shadow-2xl p-10 flex flex-col items-center max-w-md w-full border-0 animate-fade-in relative">
+          <div className="mb-4 relative flex items-center justify-center">
+            <span className="absolute rounded-full bg-gradient-to-tr from-indigo-400 via-blue-300 to-indigo-600 opacity-40 blur-lg w-20 h-20"></span>
             <img
               src="/logo.png"
               alt="ReSearcher AI Logo"
-              width={64}
-              height={64}
-              className="relative rounded-full border-2 border-indigo-400 dark:border-indigo-700 shadow"
+              width={80}
+              height={80}
+              className="relative rounded-full border-4 border-indigo-400 dark:border-indigo-700 shadow-lg bg-white"
+              style={{ zIndex: 1 }}
             />
           </div>
           <h1 className="text-3xl font-extrabold text-indigo-700 dark:text-indigo-300 mb-2 text-center">
