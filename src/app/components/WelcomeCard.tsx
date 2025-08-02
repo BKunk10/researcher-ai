@@ -68,7 +68,7 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({
             onClick={onCreateProject}
             size="lg"
           >
-            🚀 Create New Project
+            Create New Project
           </Button>
           <Button
             className="w-full bg-indigo-50 dark:bg-indigo-900 border border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-100 hover:bg-indigo-100 dark:hover:bg-indigo-800 transition font-semibold"
