@@ -9,6 +9,7 @@ import {
   CardFooter,
 } from "./ui/card";
 import { Button } from "./ui/button";
+import { signOut } from "next-auth/react";
 
 interface WelcomeCardProps {
   user: {
@@ -47,13 +48,21 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({
     </CardContent>
 
     <CardFooter>
-      <Button
-        className="w-full rounded-xl shadow-md"
-        onClick={onCreateProject}
-        size="lg"
-      >
-        Create New Project
-      </Button>
+      <div className="flex flex-col gap-2 w-full">
+        <Button
+          className="w-full rounded-xl shadow-md"
+          onClick={onCreateProject}
+          size="lg"
+        >
+          Create New Project
+        </Button>
+        <Button
+          className="w-full"
+          onClick={() => signOut()}
+        >
+          Logout
+        </Button>
+      </div>
     </CardFooter>
   </Card>
 );
