@@ -1,19 +1,43 @@
 "use client";
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "./ui/card";
+import Image from "next/image";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+} from "./ui/card";
 import { Button } from "./ui/button";
 
 interface WelcomeCardProps {
-  userName: string;
+  user?: {
+    name?: string | null;
+    image?: string | null;
+  };
   onCreateProject: () => void;
 }
 
-export const WelcomeCard: React.FC<WelcomeCardProps> = ({ userName, onCreateProject }) => (
+export const WelcomeCard: React.FC<WelcomeCardProps> = ({
+  user,
+  onCreateProject,
+}) => (
   <Card className="max-w-md w-full mx-auto mt-8 shadow-lg rounded-2xl bg-white dark:bg-gray-950">
     <CardHeader>
-      <CardTitle className="text-2xl font-bold mb-2">
-        Welcome, {userName}!
-      </CardTitle>
+      <div>
+        <CardTitle className="text-2xl font-bold mb-1">
+          Welcome, {user?.name || "Guest"}!
+        </CardTitle>
+      </div>
+      {user?.image && (
+        <Image
+          src={user.image}
+          alt="User Avatar"
+          width={40}
+          height={40}
+          className="rounded-full border"
+        />
+      )}
     </CardHeader>
     <CardContent>
       <p className="text-gray-700 dark:text-gray-300 mb-4">
