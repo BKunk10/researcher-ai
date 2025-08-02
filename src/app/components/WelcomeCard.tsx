@@ -11,7 +11,7 @@ import {
 import { Button } from "./ui/button";
 
 interface WelcomeCardProps {
-  user?: {
+  user: {
     name?: string | null;
     image?: string | null;
   };
@@ -22,30 +22,30 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({
   user,
   onCreateProject,
 }) => (
-  <Card className="max-w-md w-full mx-auto mt-8 shadow-lg rounded-2xl bg-white dark:bg-gray-950">
+  <Card className="max-w-xl w-full mx-auto mt-8 shadow-lg rounded-2xl bg-white dark:bg-gray-950">
     <CardHeader>
-      <div className="flex items-center gap-3">
+      <div className="flex flex-row items-center gap-4">
         <Image
-          src={
-            user?.image && user.image !== ""
-              ? user.image
-              : "/default-avatar.png"
-          }
+          src={user.image || "/default-avatar.png"}
           alt="User Avatar"
-          width={40}
-          height={40}
-          className="rounded-full border"
+          width={48}
+          height={48}
+          className="rounded-full border shadow"
         />
-        <CardTitle className="text-2xl font-bold mb-1">
-          Welcome, {user?.name || "Guest"}!
+        <CardTitle className="text-2xl font-semibold">
+          Welcome, {user.name || "User"}!
         </CardTitle>
       </div>
     </CardHeader>
+
     <CardContent>
-      <p className="text-gray-700 dark:text-gray-300 mb-4">
-        ReSearcher AI is your collaborative platform for engineering research and CAD projects. Seamlessly manage, share, and innovate with powerful AI-driven tools designed for modern engineering teams.
+      <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+        ReSearcher AI is your collaborative workspace for engineering research
+        and CAD innovation. Manage, test, and iterate on designs faster—with
+        built-in AI tools tailored for modern engineering teams.
       </p>
     </CardContent>
+
     <CardFooter>
       <Button
         className="w-full rounded-xl shadow-md"
