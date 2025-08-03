@@ -1,0 +1,16 @@
+{
+  "name": "your-project-name",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "typescript": "^4.5.0",
+    "mocha": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "^9.0.0"
+  }
+}
