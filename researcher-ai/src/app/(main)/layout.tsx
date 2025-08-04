@@ -1,7 +1,5 @@
-// layout.tsx
 import React from "react";
-import Sidebar from "@/components/Sidebar"; // If refactored
-import { cn } from "@/lib/utils";
+import Sidebar from "@/components/Sidebar";
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   return (
