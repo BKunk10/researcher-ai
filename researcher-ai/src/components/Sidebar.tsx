@@ -24,11 +24,20 @@ const navItems = [
   { name: "Settings", href: "/settings", icon: Settings },
 ];
 
-export default function Sidebar() {
+type SidebarProps = {
+  className?: string;
+};
+
+export default function Sidebar({ className }: SidebarProps) {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed z-30 inset-y-0 left-0 w-16 md:w-64 bg-background border-r border-border flex flex-col transition-all">
+    <aside
+      className={cn(
+        "fixed z-30 inset-y-0 left-0 w-16 md:w-64 bg-background border-r border-border flex flex-col transition-all",
+        className
+      )}
+    >
       <div className="flex items-center justify-center md:justify-start h-16 px-4 border-b border-border">
         <span className="font-bold text-lg tracking-tight">AI CAD</span>
       </div>
