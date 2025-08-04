@@ -35,7 +35,8 @@ export default function Sidebar({ className }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "fixed z-30 inset-y-0 left-0 w-16 md:w-64 bg-background border-r border-border flex flex-col transition-all",
+        // Remove: "fixed z-30 inset-y-0 left-0"
+        "w-16 md:w-64 bg-background border-r border-border flex flex-col transition-all",
         className
       )}
     >
