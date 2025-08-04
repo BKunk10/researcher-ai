@@ -34,14 +34,16 @@ export default function ClientDashboard() {
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-blue-50 to-gray-100">
       <Sidebar />
-      <main className="flex-1 flex flex-col items-center justify-center p-8">
-        <WelcomeCard user={session.user!} onCreateProject={() => {}} />
-        <button
-          onClick={() => signOut()}
-          className="mt-8 px-5 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition font-medium"
-        >
-          Sign out
-        </button>
+      <main className="flex-1 flex items-center justify-center p-8">
+        <div className="flex flex-col items-center">
+          <WelcomeCard user={session.user!} onCreateProject={() => {}} />
+          <button
+            onClick={() => signOut()}
+            className="mt-8 px-5 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition font-medium"
+          >
+            Sign out
+          </button>
+        </div>
       </main>
     </div>
   );
