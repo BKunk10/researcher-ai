@@ -38,7 +38,7 @@ export default function ClientDashboard() {
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-blue-50 to-gray-100">
       <Sidebar />
-      <main className="flex flex-1 h-full">
+      <main className="flex flex-1 min-h-screen">
         <div className="flex flex-1 items-center justify-center h-full">
           <div className="flex flex-col items-center">
             <WelcomeCard user={session.user!} onCreateProject={() => {}} />
