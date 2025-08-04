@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["avatars.githubusercontent.com"], // Allow GitHub avatars
+    domains: ["avatars.githubusercontent.com"],
   },
   // Uncomment and edit if you need rewrites for auth
   // async rewrites() {
@@ -16,4 +16,6 @@ const nextConfig: NextConfig = {
   // },
 };
 
+// Use CommonJS export for Next.js compatibility
 export default nextConfig;
+module.exports = nextConfig;
