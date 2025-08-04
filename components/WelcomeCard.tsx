@@ -39,7 +39,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 );
 
 type WelcomeCardProps = {
-  user: {
+  user?: {
     name?: string | null;
     email?: string | null;
     image?: string | null;
