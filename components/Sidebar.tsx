@@ -30,7 +30,7 @@ type SidebarProps = {
 };
 
 export default function Sidebar({ className }: SidebarProps) {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? ""; // Fix: default to empty string
 
   return (
     <aside

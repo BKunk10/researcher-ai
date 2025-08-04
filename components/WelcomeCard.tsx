@@ -48,14 +48,21 @@ type WelcomeCardProps = {
 };
 
 export const WelcomeCard: React.FC<WelcomeCardProps> = ({ user, onCreateProject }) => (
-  <div className="p-6 bg-white rounded shadow text-center">
-    <h2 className="text-2xl font-bold mb-2">
+  <div className="p-8 bg-white rounded-2xl shadow-xl text-center max-w-md w-full">
+    {user?.image && (
+      <img
+        src={user.image}
+        alt={user.name || "User"}
+        className="mx-auto mb-4 w-20 h-20 rounded-full shadow"
+      />
+    )}
+    <h2 className="text-2xl font-bold mb-2 text-gray-800">
       Welcome, {user?.name || "Researcher"}!
     </h2>
-    <p className="mb-4">Ready to start a new project?</p>
+    <p className="mb-6 text-gray-500">Ready to start a new project?</p>
     <button
       onClick={onCreateProject}
-      className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+      className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-semibold"
     >
       Create Project
     </button>
