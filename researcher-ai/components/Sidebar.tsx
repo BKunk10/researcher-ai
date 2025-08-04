@@ -11,7 +11,7 @@ import {
   Users,
   Settings,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "../lib/utils"; // <-- changed from "@/lib/utils"
 
 const navItems = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
