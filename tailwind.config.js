@@ -3,9 +3,8 @@ module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    // Add other folders as needed
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    // Remove "./src/**/*" if you don't use src/
+    // No "./src/**/*" since you don't use a src folder
   ],
   theme: {
     extend: {},

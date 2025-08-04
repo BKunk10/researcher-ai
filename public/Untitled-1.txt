@@ -1,6 +1,0 @@
-researcher-ai/
-  components/
-    WelcomeCard.tsx   <-- move here!
-  src/
-    app/
-      page.tsx
