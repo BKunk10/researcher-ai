@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import ClientRoot from "../components/ClientRoot";
+import "./globals.css";
 
 export const metadata = {
   title: 'Researcher AI',
