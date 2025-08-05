@@ -1,54 +1,59 @@
+// components/NewProjectModal.tsx
 "use client";
 
 import { useState } from "react";
 import {
   Dialog,
-  DialogTrigger,
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+  DialogTrigger,
+} from "./ui/dialog";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
 
-export default function NewProjectModal() {
+interface NewProjectModalProps {
+  onCreate?: (title: string, description: string) => void;
+}
+
+export default function NewProjectModal({ onCreate }: NewProjectModalProps) {
   const [open, setOpen] = useState(false);
-  const [projectName, setProjectName] = useState("");
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const handleSubmit = () => {
-    console.log("Project Name:", projectName);
-    console.log("Description:", description);
+    if (!title.trim()) return;
+    onCreate?.(title, description);
+    setTitle("");
+    setDescription("");
     setOpen(false);
-    // Later: Send to DB
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="default">+ New Project</Button>
+        <Button>Create New Project</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create New Project</DialogTitle>
+          <DialogTitle>New Project</DialogTitle>
         </DialogHeader>
         <div className="space-y-4">
           <Input
-            placeholder="Project name"
-            value={projectName}
-            onChange={(e) => setProjectName(e.target.value)}
+            placeholder="Project Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
           <Textarea
-            placeholder="Short description"
+            placeholder="Project Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
+          <Button onClick={handleSubmit} className="w-full">
+            Create
+          </Button>
         </div>
-        <DialogFooter>
-          <Button onClick={handleSubmit}>Create</Button>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
