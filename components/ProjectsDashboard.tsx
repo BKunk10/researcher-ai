@@ -1,46 +1,57 @@
-// components/ProjectsDashboard.tsx
 "use client";
 
 import { useState } from "react";
-import NewProjectModal from "./NewProjectModal";
-
-type Project = {
-  id: number;
-  title: string;
-  description: string;
-};
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function ProjectsDashboard() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [nextId, setNextId] = useState(1);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleCreateProject = (title: string, description: string) => {
-    const newProject = { id: nextId, title, description };
-    setProjects([...projects, newProject]);
-    setNextId(nextId + 1);
+  const handleCreate = async () => {
+    if (!title) return;
+
+    setIsLoading(true);
+
+    try {
+      const res = await fetch("/api/projects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title, description }),
+      });
+
+      if (!res.ok) throw new Error("Failed to create project");
+
+      const data = await res.json();
+      alert("Project created: " + data.title);
+      setTitle("");
+      setDescription("");
+    } catch (error) {
+      alert("Error creating project.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold">Your Projects</h1>
-          <p className="text-gray-600">This is where all your research or design projects will live.</p>
-        </div>
-        <NewProjectModal onCreate={handleCreateProject} />
-      </div>
-
-      {/* Dynamic project cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {projects.map((project) => (
-          <div
-            key={project.id}
-            className="border rounded-lg p-4 shadow-sm bg-white"
-          >
-            <h2 className="font-semibold">{project.title}</h2>
-            <p className="text-sm text-gray-500">{project.description}</p>
-          </div>
-        ))}
+    <div className="space-y-6">
+      <div className="flex flex-col gap-2 max-w-lg">
+        <h1 className="text-2xl font-bold">Create a New Project</h1>
+        <Input
+          placeholder="Project title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <Textarea
+          placeholder="Optional description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <Button onClick={handleCreate} disabled={isLoading}>
+          {isLoading ? "Creating..." : "Create Project"}
+        </Button>
       </div>
     </div>
   );
