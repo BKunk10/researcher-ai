@@ -1,9 +1,16 @@
 // components/ProjectsDashboard.tsx
+import { Button } from "@/components/ui/button";
+
 export default function ProjectsDashboard() {
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold">Your Projects</h1>
-      <p className="text-gray-600">This is where all your research or design projects will live.</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold">Your Projects</h1>
+          <p className="text-gray-600">This is where all your research or design projects will live.</p>
+        </div>
+        <Button>Create New Project</Button>
+      </div>
 
       {/* Placeholder for future project cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
