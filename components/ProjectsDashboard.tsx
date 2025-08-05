@@ -1,5 +1,5 @@
 // components/ProjectsDashboard.tsx
-import { Button } from "@/components/ui/button";
+import NewProjectModal from "./NewProjectModal";
 
 export default function ProjectsDashboard() {
   return (
@@ -9,7 +9,7 @@ export default function ProjectsDashboard() {
           <h1 className="text-2xl font-bold">Your Projects</h1>
           <p className="text-gray-600">This is where all your research or design projects will live.</p>
         </div>
-        <Button>Create New Project</Button>
+        <NewProjectModal />
       </div>
 
       {/* Placeholder for future project cards */}
