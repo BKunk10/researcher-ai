@@ -3,8 +3,10 @@ import ProjectsDashboard from '@/components/ProjectsDashboard';
 
 export default function ProjectsPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-gray-100">
-      <ProjectsDashboard />
-    </div>
+    <main className="flex-1 p-6">
+      <div className="max-w-6xl mx-auto">
+        <ProjectsDashboard />
+      </div>
+    </main>
   );
 }
