@@ -19,12 +19,12 @@ export default function ProjectsDashboard() {
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchProjects = async () => {
-    const res = await fetch("/api/projects");
-    if (res.ok) {
+    try {
+      const res = await fetch("/api/projects");
       const data = await res.json();
       setProjects(data);
-    } else {
-      console.error("Failed to fetch projects");
+    } catch (err) {
+      console.error("Failed to fetch projects", err);
     }
   };
 
@@ -33,7 +33,8 @@ export default function ProjectsDashboard() {
   }, []);
 
   const handleCreate = async () => {
-    if (!title) return;
+    if (!title.trim()) return;
+
     setIsLoading(true);
     try {
       const res = await fetch("/api/projects", {
@@ -41,6 +42,7 @@ export default function ProjectsDashboard() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title, description }),
       });
+
       if (res.ok) {
         const data = await res.json();
         setProjects((prev) => [data, ...prev]);
@@ -51,7 +53,6 @@ export default function ProjectsDashboard() {
       }
     } catch (err) {
       console.error(err);
-      alert("Something went wrong.");
     } finally {
       setIsLoading(false);
     }
@@ -62,25 +63,25 @@ export default function ProjectsDashboard() {
     if (res.ok) {
       setProjects((prev) => prev.filter((p) => p.id !== id));
     } else {
-      alert("Failed to delete project");
+      alert("Failed to delete project.");
     }
   };
 
   const handleEdit = async (project: Project) => {
     const newTitle = prompt("New title:", project.title);
-    const newDescription = prompt("New description:", project.description || "");
+    const newDesc = prompt("New description:", project.description || "");
     if (newTitle === null) return;
 
     const res = await fetch(`/api/projects/${project.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title: newTitle, description: newDescription }),
+      body: JSON.stringify({ title: newTitle, description: newDesc }),
     });
 
     if (res.ok) {
       fetchProjects();
     } else {
-      alert("Failed to update project");
+      alert("Failed to update project.");
     }
   };
 
@@ -124,10 +125,7 @@ export default function ProjectsDashboard() {
                 >
                   View
                 </Button>
-                <Button
-                  variant="outline"
-                  onClick={() => handleEdit(project)}
-                >
+                <Button variant="outline" onClick={() => handleEdit(project)}>
                   Edit
                 </Button>
                 <Button
