@@ -1,48 +1,38 @@
-import { prisma } from "@/lib/db";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '../../../../lib/prisma';
 
-export async function DELETE(
-  req: Request,
-  context: { params: { id: string } }
-) {
-  const id = context.params.id;
-
-  if (!id) {
-    return NextResponse.json({ error: "Missing project ID" }, { status: 400 });
-  }
-
-  try {
-    const deleted = await prisma.project.delete({
-      where: { id },
-    });
-
-    return NextResponse.json(deleted);
-  } catch (error) {
-    console.error("DELETE error:", error);
-    return NextResponse.json({ error: "Failed to delete project" }, { status: 500 });
-  }
-}
-
+// PUT: Update a project
 export async function PUT(
-  req: Request,
-  context: { params: { id: string } }
+  req: NextRequest,
+  { params }: { params: { id: string } }
 ) {
-  const id = context.params.id;
+  const id = params.id;
   const body = await req.json();
-  const { title, description } = body;
 
   try {
     const updated = await prisma.project.update({
       where: { id },
-      data: {
-        title,
-        description,
-      },
+      data: body,
     });
-
     return NextResponse.json(updated);
   } catch (error) {
-    console.error("PUT error:", error);
-    return NextResponse.json({ error: "Failed to update project" }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to update project' }, { status: 500 });
+  }
+}
+
+// DELETE: Delete a project
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const id = params.id;
+
+  try {
+    await prisma.project.delete({
+      where: { id },
+    });
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to delete project' }, { status: 500 });
   }
 }
