@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 
-export async function DELETE(request: NextRequest) {
-  const url = new URL(request.url);
-  const id = url.pathname.split("/").pop();
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const id = params.id;
 
   if (!id) {
     return NextResponse.json({ error: "Missing project ID" }, { status: 400 });
