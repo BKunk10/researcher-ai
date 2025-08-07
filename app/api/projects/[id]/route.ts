@@ -5,7 +5,7 @@ export async function PUT(
   request: Request,
   context: { params: { id: string } }
 ) {
-  const id = context.params.id;
+  const { id } = context.params;
   const body = await request.json();
 
   try {
@@ -23,7 +23,7 @@ export async function DELETE(
   request: Request,
   context: { params: { id: string } }
 ) {
-  const id = context.params.id;
+  const { id } = context.params;
 
   try {
     await prisma.project.delete({
