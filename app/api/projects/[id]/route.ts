@@ -3,7 +3,7 @@ import { prisma } from '../../../../lib/prisma';
 
 export async function PUT(
   request: Request,
-  context: { params: { id: string } }
+  context: any // <-- use 'any' or remove the type entirely
 ) {
   const { id } = context.params;
   const body = await request.json();
@@ -21,7 +21,7 @@ export async function PUT(
 
 export async function DELETE(
   request: Request,
-  context: { params: { id: string } }
+  context: any // <-- use 'any' or remove the type entirely
 ) {
   const { id } = context.params;
 
