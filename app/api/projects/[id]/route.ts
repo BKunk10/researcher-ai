@@ -4,9 +4,9 @@ import { prisma } from '../../../../lib/prisma';
 // PUT: Update a project
 export async function PUT(
   req: NextRequest,
-  context: { params: { id: string } }
+  { params }: { params: { id: string } }
 ) {
-  const id = context.params.id;
+  const id = params.id;
   const body = await req.json();
 
   try {
@@ -15,7 +15,7 @@ export async function PUT(
       data: body,
     });
     return NextResponse.json(updated);
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: 'Failed to update project' }, { status: 500 });
   }
 }
@@ -23,16 +23,16 @@ export async function PUT(
 // DELETE: Delete a project
 export async function DELETE(
   req: NextRequest,
-  context: { params: { id: string } }
+  { params }: { params: { id: string } }
 ) {
-  const id = context.params.id;
+  const id = params.id;
 
   try {
     await prisma.project.delete({
       where: { id },
     });
     return NextResponse.json({ success: true });
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: 'Failed to delete project' }, { status: 500 });
   }
 }
