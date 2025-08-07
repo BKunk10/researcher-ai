@@ -4,9 +4,9 @@ import { prisma } from '../../../../lib/prisma';
 // PUT: Update a project
 export async function PUT(
   req: NextRequest,
-  context: { params: Record<string, string> }
+  { params }: { params: Record<string, string> }
 ) {
-  const id = context.params.id;
+  const id = params.id;
   const body = await req.json();
 
   try {
@@ -23,9 +23,9 @@ export async function PUT(
 // DELETE: Delete a project
 export async function DELETE(
   req: NextRequest,
-  context: { params: Record<string, string> }
+  { params }: { params: Record<string, string> }
 ) {
-  const id = context.params.id;
+  const id = params.id;
 
   try {
     await prisma.project.delete({
